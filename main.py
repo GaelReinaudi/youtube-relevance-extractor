@@ -1,8 +1,14 @@
 from youtube_transcript_api import YouTubeTranscriptApi
 import openai
 
+from dotenv import load_dotenv
+import os
+
+load_dotenv()  # take environment variables from .env.
+OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
+
 # Configure your OpenAI API key
-openai.api_key = "XXXXXXXXXXXXXXXXXXXX"
+openai.api_key = OPENAI_API_KEY
 
 
 def generate_summary(text):
@@ -24,8 +30,8 @@ For example, consider the following subtitles:
 The result would be:
 "Preheat oven to 350 degrees. 
  - 1 Grate 1 cup of carrots.
- - 2 after 5min add 1 cup of water.
- - 3 add 0,5 cup of milk 
+ - 2 after 5min add 1 cup of water,
+ - 3 add 0,5 cup of milk,
  - 4 credibility: 3/10 because too little carrots."
 
 Here is another example, if the subtitles were : 
