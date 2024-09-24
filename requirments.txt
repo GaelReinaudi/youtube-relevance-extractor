@@ -1,3 +1,0 @@
-python-dotenv
-youtube_transcript_api
-openai

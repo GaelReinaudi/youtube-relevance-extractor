@@ -50,7 +50,7 @@ The result would be:
         messages=messages,
     )
 
-    return completion.choices[-1].message['content']
+    return completion.choices[-1].message["content"]
 
 
 # Le reste de votre code ici...
@@ -61,24 +61,24 @@ while True:
     video_list_input = input(
         "Veuillez fournir la liste des vidéos (séparées par des virgules) : "
     )
-    video_list = [video.strip() for video in video_list_input.split(',')]
+    video_list = [video.strip() for video in video_list_input.split(",")]
 
     # Iterate over the list of videos
     for video_url in video_list:
         try:
             # Extract video ID from the URL
-            video_id = video_url.split('=')[-1]
+            video_id = video_url.split("=")[-1]
 
             if captions := YouTubeTranscriptApi.get_transcript(video_id):
                 print(f"Sous-titres disponibles pour la vidéo {video_url}:")
                 all_text = ""
                 for caption in captions:
-                    text = caption['text']
+                    text = caption["text"]
                     all_text += text + " "
 
                 # Split the concatenated subtitles into chunks
                 text_chunks = [
-                    all_text[i: i + 4096] for i in range(0, len(all_text), 4096)
+                    all_text[i : i + 4096] for i in range(0, len(all_text), 4096)
                 ]
 
                 print("Résumés des sous-titres :")
@@ -99,10 +99,10 @@ while True:
         choix = input(
             "Avez-vous d'autres vidéos dont extraire les sous-titres ? Tapez O pour oui, N pour non : "
         )
-        if choix.lower() in ['o', 'n']:
+        if choix.lower() in ["o", "n"]:
             break
         else:
             print("Veuillez entrer une valeur valide (O pour oui, N pour non).")
 
-    if choix.lower() != 'o':
+    if choix.lower() != "o":
         break
